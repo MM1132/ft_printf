@@ -6,23 +6,22 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:02:19 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 21:01:04 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/23 00:10:45 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# include <stddef.h>
+# include <stdarg.h>
 
-#include <stddef.h>
-#include <stdarg.h>
-
-extern const char LOWERCASE_HEX_BASE[];
-extern const char UPPERCASE_HEX_BASE[];
-extern const char BASE_10[];
+extern const char	g_lowercase_hex_base[];
+extern const char	g_uppercase_hex_base[];
+extern const char	g_base_10[];
 
 typedef struct s_format_specifier
 {
-	char 	*str;
+	char	*str;
 	int		length;
 	char	specifier;
 }	t_format_specifier;

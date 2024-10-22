@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:41:33 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 21:14:21 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/22 23:43:04 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 	int printf_return;
 	int	number = 2147483647;
 	unsigned int unsigned_number = 3147483647;
-	unsigned long hex_number = 255;
+	unsigned long hex_number = -255;
 
 	printf_return = ft_printf(
 		"Char: '%c'\n\
@@ -41,6 +41,11 @@ Just percent: %%\n\n",
 	);
 
 	ft_printf(" NULL %s NULL \n", NULL);
-	printf(" NULL %s NULL \n", NULL);
+	printf(" NULL %s NULL \n\n", NULL);
+
+	printf_return = ft_printf("%x\n", 9223372036854775);
+	printf("Return: %d\n", printf_return);
+	printf("%x\n", 9223372036854775);
+	printf("Return: %d\n\n", printf_return);
 	return (0);
 }

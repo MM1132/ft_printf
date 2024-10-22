@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:49:08 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/21 18:40:48 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/23 00:38:06 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	is_valid_format_char(char c)
 {
 	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u'
 		|| c == 'x' || c == 'X' || c == '%');
-}  
+}
 
-static t_format_specifier	*parse_format_specifier(char *s, int len)
+static t_format_specifier	*parse_specifier(char *s, int len)
 {
 	t_format_specifier	*format_specifier;
 
@@ -32,6 +32,12 @@ static t_format_specifier	*parse_format_specifier(char *s, int len)
 	return (format_specifier);
 }
 
+void	*free_and_return_null(void *memory)
+{
+	free(memory);
+	return (NULL);
+}
+
 // Return the index at which the valid format specifier sits at
 // Return -1 if format specifier is not accepted
 t_format_specifier	*get_format_specifier(const char *s)
@@ -42,22 +48,17 @@ t_format_specifier	*get_format_specifier(const char *s)
 
 	index = 0;
 	if (s[index] == '%')
-	{	
-		index++;
-		while (s[index] != 0)
+	{
+		while (s[index++] != 0)
 		{
 			if (is_valid_format_char(s[index]))
 			{
 				format_str = ft_substr(s, 0, index + 1);
 				if (format_str == NULL)
 					return (NULL);
-				format_specifier = parse_format_specifier(format_str, index + 1);
+				format_specifier = parse_specifier(format_str, index + 1);
 				if (format_specifier == NULL)
-				{
-					free(format_str);
-					return (NULL);
-				}
-				free(format_str);
+					return (free_and_return_null(format_str));
 				return (format_specifier);
 			}
 			index++;

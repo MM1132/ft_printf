@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 22:00:49 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 21:03:06 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/23 00:34:26 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-static int	print_arg_with_format(t_format_specifier *format_specifier, va_list args)
+static int	print_arg_with_format(
+	t_format_specifier *format_specifier,
+	va_list args
+)
 {
 	if (format_specifier->specifier == 'c')
 		return (print_character_format(args));
@@ -23,7 +26,8 @@ static int	print_arg_with_format(t_format_specifier *format_specifier, va_list a
 		return (print_string_format(args));
 	if (format_specifier->specifier == 'p')
 		return (print_pointer_format(args));
-	if (format_specifier->specifier == 'd' || format_specifier->specifier == 'i')
+	if (format_specifier->specifier == 'd' || \
+		format_specifier->specifier == 'i')
 		return (print_nbr_format(args));
 	if (format_specifier->specifier == 'u')
 		return (print_unsigned_format(args));
@@ -36,6 +40,23 @@ static int	print_arg_with_format(t_format_specifier *format_specifier, va_list a
 	return (-1);
 }
 
+int	print_arg(va_list args, const char *c, int *index)
+{
+	t_format_specifier	*format_specifier;
+	int					arg_print_status;
+
+	format_specifier = get_format_specifier(c);
+	if (format_specifier == NULL)
+		return (-1);
+	*index += format_specifier->length;
+	arg_print_status = print_arg_with_format(format_specifier, args);
+	free(format_specifier->str);
+	free(format_specifier);
+	if (arg_print_status == -1)
+		return (-1);
+	return (arg_print_status);
+}
+
 // Start looping through the string
 // Whenever encounter a '%', call the function to read it
 // Return an object with the read format DATA, or just
@@ -46,7 +67,6 @@ int	ft_printf(const char *format, ...)
 {
 	va_list				args;
 	int					index;
-	t_format_specifier	*format_specifier;
 	int					arg_print_status;
 	int					printed_length;
 
@@ -57,23 +77,16 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[index] == '%')
 		{
-			format_specifier = get_format_specifier(&format[index]);
-			if (format_specifier == NULL)
-				return (-1);
-			index += format_specifier->length;
-			arg_print_status = print_arg_with_format(format_specifier, args);
-			printed_length += arg_print_status;
-			free(format_specifier);
+			arg_print_status = print_arg(args, &format[index], &index);
 			if (arg_print_status == -1)
 				return (-1);
-		}
-		else
-		{
-			arg_print_status = print_char(format[index++]);
-			if (arg_print_status < 0)
-				return (-1);
 			printed_length += arg_print_status;
+			continue ;
 		}
+		arg_print_status = print_char(format[index++]);
+		if (arg_print_status < 0)
+			return (-1);
+		printed_length += arg_print_status;
 	}
 	va_end(args);
 	return (printed_length);
