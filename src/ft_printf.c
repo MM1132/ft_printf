@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 22:00:49 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 20:42:42 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/22 21:03:06 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int	print_arg_with_format(t_format_specifier *format_specifier, va_list a
 		return (print_lowercase_hex_format(args));
 	if (format_specifier->specifier == 'X')
 		return (print_uppercase_hex_format(args));
+	if (format_specifier->specifier == '%')
+		return (print_char('%'));
 	return (-1);
 }
 

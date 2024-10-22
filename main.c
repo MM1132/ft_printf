@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:41:33 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 21:02:03 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/22 21:14:21 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ Number d: %d\n\
 Number i: %i\n\
 Unsigned number u: %u\n\
 Lower x: %x\n\
-Upper x: %X\n\n",
+Upper x: %X\n\
+Just percent: %%\n\n",
 		'5',
 		"hehe",
 		&number,
@@ -39,7 +40,7 @@ Upper x: %X\n\n",
 		hex_number
 	);
 
-	printf("ft_printf returned %d\n", printf_return);
-	printf("Pointer: %p\n", &number);
+	ft_printf(" NULL %s NULL \n", NULL);
+	printf(" NULL %s NULL \n", NULL);
 	return (0);
 }
