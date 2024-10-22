@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:02:19 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 13:52:42 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:21:53 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ int					print_char(char *c);
 int					print_str(char *str);
 int					print_pointer_format(va_list args);
 int					put_hex(unsigned long n);
+int					put_int(unsigned long n);
+int					print_nbr_format(va_list args);
 
 #endif

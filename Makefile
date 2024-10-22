@@ -9,11 +9,12 @@ CFLAGS:=-Wall -Wextra -Werror -I$(INCLUDE_DIR) -I$(LIBFT_DIR)
 SRC_FILES:=\
 	$(SRC_DIR)/ft_printf.c \
 	$(SRC_DIR)/get_format_specifier.c \
-	$(SRC_DIR)/put_hex.c \
+	$(SRC_DIR)/put_nbr_base.c \
 	$(SRC_DIR)/utils.c \
 	$(SRC_DIR)/print_functions/print_character_format.c \
 	$(SRC_DIR)/print_functions/print_string_format.c \
-	$(SRC_DIR)/print_functions/print_pointer_format.c
+	$(SRC_DIR)/print_functions/print_pointer_format.c \
+	$(SRC_DIR)/print_functions/print_nbr_format.c
 
 OBJ_FILES:=$(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

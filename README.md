@@ -8,11 +8,11 @@ variadic functions
 - `# +`
 
 ## Specifiers
-+- c
-+- s
-- p
-- d
-- i
++ c
++ s
++ p
++ d
++ i
 - u
 - x
 - X
