@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   put_hex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 17:15:39 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 20:17:35 by rreimann         ###   ########.fr       */
+/*   Created: 2024/10/22 20:49:21 by rreimann          #+#    #+#             */
+/*   Updated: 2024/10/22 20:50:11 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft_printf.h"
 
-// varsity
-// tumultuous
-int	print_char(char c)
+int	put_lowercase_hex(unsigned long n)
 {
-	return (write(1, &c, 1));
+	return (put_nbr_base(n, LOWERCASE_HEX_BASE));
 }
 
-int	print_str(char *str)
+int	put_uppercase_hex(unsigned long n)
 {
-	int	write_error;
-	int	number_of_chars_written;
-
-	number_of_chars_written = 0;
-	while (*str != 0)
-	{
-		write_error = print_char(*str);
-		if (write_error == -1)
-			return (-1);
-		number_of_chars_written++;
-		str++;
-	}
-	return (number_of_chars_written);
+	return (put_nbr_base(n, UPPERCASE_HEX_BASE));
 }

@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 22:00:49 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 19:23:04 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:42:42 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ static int	print_arg_with_format(t_format_specifier *format_specifier, va_list a
 		return (print_pointer_format(args));
 	if (format_specifier->specifier == 'd' || format_specifier->specifier == 'i')
 		return (print_nbr_format(args));
+	if (format_specifier->specifier == 'u')
+		return (print_unsigned_format(args));
+	if (format_specifier->specifier == 'x')
+		return (print_lowercase_hex_format(args));
+	if (format_specifier->specifier == 'X')
+		return (print_uppercase_hex_format(args));
 	return (-1);
 }
 
@@ -61,7 +67,7 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 		{
-			arg_print_status = print_char((char *)&format[index++]);
+			arg_print_status = print_char(format[index++]);
 			if (arg_print_status < 0)
 				return (-1);
 			printed_length += arg_print_status;

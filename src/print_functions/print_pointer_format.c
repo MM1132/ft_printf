@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 18:50:15 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 15:46:10 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:48:35 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	print_pointer_format(va_list args)
 	if (status < 0)
 		return (-1);
 	print_counter += status;
-	status = put_hex(pointer);
+	status = put_lowercase_hex(pointer);
 	if (status < 0)
 		return (-1);
 	print_counter += status;

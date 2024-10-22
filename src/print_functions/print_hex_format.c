@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   print_hex_format.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 17:15:39 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 20:17:35 by rreimann         ###   ########.fr       */
+/*   Created: 2024/10/22 20:34:21 by rreimann          #+#    #+#             */
+/*   Updated: 2024/10/22 21:00:24 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft_printf.h"
+#include <stdarg.h>
 
-// varsity
-// tumultuous
-int	print_char(char c)
+const char	LOWERCASE_HEX_BASE[] = "0123456789abcdef";
+const char	UPPERCASE_HEX_BASE[] = "0123456789ABCDEF";
+
+int	print_lowercase_hex_format(va_list args)
 {
-	return (write(1, &c, 1));
+	unsigned long	n;
+
+	n = va_arg(args, unsigned long);
+	return (put_lowercase_hex(n));
 }
 
-int	print_str(char *str)
+int	print_uppercase_hex_format(va_list args)
 {
-	int	write_error;
-	int	number_of_chars_written;
+	unsigned long	n;
 
-	number_of_chars_written = 0;
-	while (*str != 0)
-	{
-		write_error = print_char(*str);
-		if (write_error == -1)
-			return (-1);
-		number_of_chars_written++;
-		str++;
-	}
-	return (number_of_chars_written);
+	n = va_arg(args, unsigned long);
+	return (put_uppercase_hex(n));
 }

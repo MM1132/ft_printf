@@ -13,7 +13,7 @@ variadic functions
 + p
 + d
 + i
-- u
++ u
 - x
 - X
 - %
