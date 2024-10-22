@@ -7,3 +7,13 @@ variadic functions
 - `-0.`
 - `# +`
 
+## Specifiers
++- c
++- s
+- p
+- d
+- i
+- u
+- x
+- X
+- %

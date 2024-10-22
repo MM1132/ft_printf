@@ -6,12 +6,14 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:15:39 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/21 17:34:12 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:02:27 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
+// varsity
+// tumultuous
 int	print_char(char *c)
 {
 	return (write(1, c, 1));

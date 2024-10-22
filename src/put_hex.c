@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   put_hex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 12:41:33 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 13:56:00 by rreimann         ###   ########.fr       */
+/*   Created: 2024/10/22 13:35:29 by rreimann          #+#    #+#             */
+/*   Updated: 2024/10/22 15:41:22 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	main(void)
+static const char	*HEX_BASE = "0123456789abcdef";
+
+int	put_hex(unsigned long n)
 {
-	int printf_return;
+	int	print_status;
+	int	print_err;
 
-	int	number = 5;
-	printf_return = ft_printf("Char: '%c'\nAnd a string: '%s'\nPointer: %p\n\n",
-		'5',
-		"hehe",
-		&number
-	);
-
-	printf("Pointer: %p\n", &number);
-	return (0);
+	print_status = 0;
+	if (n / 16 != 0)
+	{
+		print_err = put_hex(n / 16);
+		if (print_err < 0)
+			return (-1);
+		print_status += print_err;
+		print_err = print_char((char *)&HEX_BASE[n % 16]);
+		if (print_err < 0)
+			return (-1);
+		print_status += print_err;
+		return (print_status);
+	}
+	return (print_char((char *)&HEX_BASE[n % 16]));
 }

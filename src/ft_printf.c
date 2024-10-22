@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 22:00:49 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/21 17:22:34 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:52:48 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-int	print_arg_with_format(t_format_specifier *format_specifier, va_list args)
+static int	print_arg_with_format(t_format_specifier *format_specifier, va_list args)
 {
 	if (format_specifier->specifier == 'c')
 		return (print_character_format(args));
 	if (format_specifier->specifier == 's')
 		return (print_string_format(args));
+	if (format_specifier->specifier == 'p')
+		return (print_pointer_format(args));
 	return (-1);
 }
 

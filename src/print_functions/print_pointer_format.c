@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_pointer_format.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 12:41:33 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 13:56:00 by rreimann         ###   ########.fr       */
+/*   Created: 2024/10/21 18:50:15 by rreimann          #+#    #+#             */
+/*   Updated: 2024/10/22 15:41:45 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	main(void)
+int	print_pointer_format(va_list args)
 {
-	int printf_return;
+	unsigned long	pointer;
+	int				print_counter;
+	int				status;
 
-	int	number = 5;
-	printf_return = ft_printf("Char: '%c'\nAnd a string: '%s'\nPointer: %p\n\n",
-		'5',
-		"hehe",
-		&number
-	);
-
-	printf("Pointer: %p\n", &number);
-	return (0);
+	print_counter = 0;
+	pointer = (unsigned long)va_arg(args, unsigned long);
+	status = print_str("0x");
+	if (status < 0)
+		return (-1);
+	print_counter += status;
+	status = put_hex(pointer);
+	if (status < 0)
+		return (-1);
+	print_counter += status;
+	return (print_counter);
 }
