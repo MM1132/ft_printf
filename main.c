@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:41:33 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 13:56:00 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:51:51 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(void)
 		&number
 	);
 
+	printf("ft_printf returned %d\n", printf_return);
 	printf("Pointer: %p\n", &number);
 	return (0);
 }

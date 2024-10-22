@@ -6,7 +6,7 @@
 /*   By: rreimann <rreimann@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 22:00:49 by rreimann          #+#    #+#             */
-/*   Updated: 2024/10/22 13:52:48 by rreimann         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:50:43 by rreimann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ int	ft_printf(const char *format, ...)
 	int					index;
 	t_format_specifier	*format_specifier;
 	int					arg_print_status;
+	int					printed_length;
 
 	va_start(args, format);
 	index = 0;
+	printed_length = 0;
 	while (format[index] != 0)
 	{
 		if (format[index] == '%')
@@ -50,15 +52,21 @@ int	ft_printf(const char *format, ...)
 				return (-1);
 			index += format_specifier->length;
 			arg_print_status = print_arg_with_format(format_specifier, args);
+			printed_length += arg_print_status;
 			free(format_specifier);
 			if (arg_print_status == -1)
 				return (-1);
 		}
 		else
-			print_char((char *)&format[index++]);
+		{
+			arg_print_status = print_char((char *)&format[index++]);
+			if (arg_print_status < 0)
+				return (-1);
+			printed_length += arg_print_status;
+		}
 	}
 	va_end(args);
-	return (index);
+	return (printed_length);
 }
 
 // Since 0 fills it all right zeroes, - cannot exist together with it
